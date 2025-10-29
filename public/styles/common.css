@@ -1,0 +1,304 @@
+/* IBM Plex Mono - Regular 400 */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/ibm-plex-mono-regular.woff2') format('woff2');
+}
+
+/* IBM Plex Mono - Bold 700 */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/ibm-plex-mono-bold.woff2') format('woff2');
+}
+
+/* IBM Plex Mono - Bold Italic 700 */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../fonts/ibm-plex-mono-bold-italic.woff2') format('woff2');
+}
+
+/* IBM Plex Serif - Regular 400 */
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/ibm-plex-serif-regular.woff2') format('woff2');
+}
+
+/* IBM Plex Serif - Medium 500 */
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/ibm-plex-serif-medium.woff2') format('woff2');
+}
+
+/* IBM Plex Serif - Bold 700 */
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/ibm-plex-serif-bold.woff2') format('woff2');
+}
+
+/* IBM Plex Serif - Bold Italic 700 */
+@font-face {
+  font-family: 'IBM Plex Serif';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../fonts/ibm-plex-serif-bold-italic.woff2') format('woff2');
+}
+
+/* Root color variables for light/dark mode */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --border-color: #e5e5e5;
+  --code-bg: #f5f5f5;
+  --code-text: #d63384;
+  --accent-color: hsl(22, 88%, 60%);
+}
+
+:root[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #999999;
+  --border-color: #333333;
+  --code-bg: #2d2d2d;
+  --code-text: #ff79c6;
+  --accent-color: hsl(22, 88%, 60%);
+}
+
+/* Common styles shared across all pages */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: monospace;
+}
+
+h1 {
+  color: var(--text-primary);
+  margin-top: 0;
+}
+
+h2 {
+  color: var(--text-primary);
+}
+
+code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9em;
+}
+
+p code {
+  background: var(--code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  color: var(--code-text);
+}
+
+pre {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: var(--text-primary);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.container {
+  background: transparent;
+  padding: 0;
+}
+
+/* Syntax highlighting colors - light mode */
+.hljs-string,
+.hljs-attr,
+.hljs-char,
+.hljs-variable {
+  color: #22863a;
+}
+
+.hljs-number,
+.hljs-literal {
+  color: #005cc5;
+}
+
+.hljs-title,
+.hljs-function,
+.hljs-title\.function_ {
+  color: #6f42c1;
+}
+
+.hljs-keyword {
+  color: #d73a49;
+}
+
+.hljs-comment {
+  color: #6a737d;
+}
+
+.hljs-params {
+  color: #333;
+}
+
+.hljs-subst {
+  color: #333;
+}
+
+.hljs-variable\.language_ {
+  color: #005cc5;
+}
+
+/* HTML/XML specific - light mode */
+.hljs-name,
+.hljs-tag {
+  color: #d73a49;
+}
+
+.hljs-attr-value {
+  color: #22863a;
+}
+
+pre code .hljs {
+  color: #24292e;
+}
+
+/* Syntax highlighting colors - dark mode */
+:root[data-theme="dark"] .hljs-string,
+:root[data-theme="dark"] .hljs-attr,
+:root[data-theme="dark"] .hljs-char,
+:root[data-theme="dark"] .hljs-variable {
+  color: #8ceb8c;
+}
+
+:root[data-theme="dark"] .hljs-number,
+:root[data-theme="dark"] .hljs-literal {
+  color: #79b8ff;
+}
+
+:root[data-theme="dark"] .hljs-title,
+:root[data-theme="dark"] .hljs-function,
+:root[data-theme="dark"] .hljs-title\.function_ {
+  color: #b392f0;
+}
+
+:root[data-theme="dark"] .hljs-keyword {
+  color: #ff7b72;
+}
+
+:root[data-theme="dark"] .hljs-comment {
+  color: #8b949e;
+}
+
+:root[data-theme="dark"] .hljs-params {
+  color: #e6edf3;
+}
+
+:root[data-theme="dark"] .hljs-subst {
+  color: #e6edf3;
+}
+
+:root[data-theme="dark"] .hljs-variable\.language_ {
+  color: #79b8ff;
+}
+
+/* HTML/XML specific - dark mode */
+:root[data-theme="dark"] .hljs-name,
+:root[data-theme="dark"] .hljs-tag {
+  color: #ff7b72;
+}
+
+:root[data-theme="dark"] .hljs-attr-value {
+  color: #8ceb8c;
+}
+
+:root[data-theme="dark"] pre code .hljs {
+  color: #e6edf3;
+}
+
+/* Date styling */
+.date {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  margin-bottom: 2rem;
+}
+
+/* Links */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Article styles */
+article {
+  line-height: 1.8;
+}
+
+article h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+article p {
+  margin-bottom: 1.5rem;
+}
+
+article img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+article picture {
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0;
+}
+
+article picture img {
+  margin: 0;
+}
+
+article picture img.md {
+  max-width: 300px;
+}

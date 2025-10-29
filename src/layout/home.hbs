@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>{{title}}</title>
+  {{#if description}}<meta name="description" content="{{description}}">{{/if}}
+  <link rel="stylesheet" href="styles/common.css">
+  <script src="components/site-header.js"></script>
+  <script src="components/site-footer.js"></script>
+  <script src="components/post-item.js"></script>
+  <style>
+    /* Bio section */
+    .bio {
+      margin-bottom: 3rem;
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+
+    .bio p {
+      margin: 0.5rem 0;
+    }
+
+    /* Posts section */
+    .posts {
+      margin-top: 3rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 2rem;
+    }
+
+    .posts h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <site-header title="{{siteTitle}}" nav-items='{{json navLinks}}'></site-header>
+  <main class="container">
+    <section class="bio">
+      {{{content}}}
+    </section>
+    {{#if posts}}
+    <section class="posts">
+      <h2>Posts</h2>
+      {{#each posts}}
+      <post-item title="{{title}}" href="{{filename}}.html" date="{{formattedDate}}"></post-item>
+      {{/each}}
+    </section>
+    {{/if}}
+  </main>
+  <site-footer nav-items='{{json navLinks}}'></site-footer>
+</body>
+</html>

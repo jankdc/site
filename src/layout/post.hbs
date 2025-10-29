@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>{{title}}</title>
+  {{#if description}}<meta name="description" content="{{description}}">{{/if}}
+  <link rel="stylesheet" href="styles/common.css">
+  <script src="components/site-header.js"></script>
+  <script src="components/site-footer.js"></script>
+  <style>
+    .article-meta {
+      margin-top: -0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <site-header title="{{siteTitle}}" nav-items='{{json navLinks}}'></site-header>
+
+  <main class="container">
+    <article>
+      {{#if title}}<h1>{{title}}</h1>{{/if}}
+      {{#if date}}<div class="date article-meta">{{date}}</div>{{/if}}
+      {{{content}}}
+    </article>
+  </main>
+  <site-footer nav-items='{{json navLinks}}'></site-footer>
+</body>
+</html>
