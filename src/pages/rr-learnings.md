@@ -22,7 +22,7 @@ When I've been working on React, I've mostly spent it developing Single Page App
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/images/react-router-logo-dark.svg">
-  <img class="md theme-logo" src="/images/react-router-logo-light.svg" alt="React Router Logo">
+  <img class="theme-logo" src="/images/react-router-logo-light.svg" alt="React Router Logo" width="200" height="200">
 </picture>
 
 There's a myriad of server-side rendering (SSR) React frameworks out there nowadays, but the weapon of choice at the time was [Remix v2](https://remix.run/). Around the inception of the project, [React Router 7 (RR7) was released](https://remix.run/blog/react-router-v7). It's the spiritual successor to the Remix v2 framework, where it practically moved all of its framework-like features to React Router and was announced that any ongoing development for Remix v2 will be happening at RR7. Given how early the project was, we saw a chance to migrate.
@@ -153,7 +153,7 @@ Hydration isn't just about "attaching event listeners"; it's React executing you
 
 ## Customising Error Pages
 
-![fortnite.com's 404 page with locale-specific text](/images/404-page-with-locale-text.webp)
+<img src="/images/404-page-with-locale-text.webp" alt="fortnite.com's 404 page with locale-specific text" width="800" height="420">
 
 There was a feature where we customised the 404 and 500 error pages with translated texts based on their preferred locale. It's a nice friendly touch (as far as error pages go) for anyone coming across these pages. As part of RR7's error handling, when some parts of the app would error, whether it's the loader, the server rendering of the components or the client rendering thereafter, the `ErrorBoundary` would catch it and render the appropriate error.
 

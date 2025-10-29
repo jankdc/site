@@ -305,7 +305,3 @@ article picture {
 article picture img {
   margin: 0;
 }
-
-article picture img.md {
-  max-width: 300px;
-}
