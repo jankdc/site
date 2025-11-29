@@ -7,6 +7,12 @@
   <title>{{title}}</title>
   {{#if description}}<meta name="description" content="{{description}}">{{/if}}
   <link rel="stylesheet" href="styles/common.css">
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-CWHXP0xWUbXf_kLiuqGar.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
   <script src="components/site-header.js"></script>
   <script src="components/site-footer.js"></script>
   <style>
@@ -26,12 +32,5 @@
     </article>
   </main>
   <site-footer nav-items='{{json navLinks}}'></site-footer>
-
-  <!-- Privacy-friendly analytics by Plausible -->
-  <script async src="https://plausible.io/js/pa-CWHXP0xWUbXf_kLiuqGar.js"></script>
-  <script>
-    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-    plausible.init()
-  </script>
 </body>
 </html>
