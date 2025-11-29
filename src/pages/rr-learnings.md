@@ -8,7 +8,11 @@ live: true
 
 ## Background
 
-When I've been working on React, I've mostly spent it developing Single Page Applications (or SPAs), where the routing, data loading, and state management happened on the client. As the ecosystem matured and discourse within the community between server-side rendering and client-side rendering continued, I've come to think that the routing part and data loading part of the work should be done on the server side by default. Obviously, with any software development decision, comes with benefits and tradeoffs, but that's a rant left for another time. What I wanted to talk about was my recent experience with a framework that allowed me to do that.
+When I've been working on React, I've mostly been developing Single Page Applications (or SPAs), where the routing, data loading, and state management happened on the client. As time went on, the ecosystem matured (Backbone.js could be my teenage son), and more concepts have been introduced to put stuff on the screen faster. Server side rendering (SSR) in React became more viable and React frameworks made it somewhat easier for developers to use them.
+
+
+
+The discourse between when to use SPAs and SSRs continued. Regardless, I've come to like the idea that the routing and data loading part of the rendering work should be done on the server side by default. Intuitively, the native routing functionality of web clients like the browser, would be more performant and battle-tested than it's re-invented JS version of it. However, obviously with any technical decision, comes with benefits and tradeoffs, but that's a rant that someone else have already made. I wanted to talk about my recent experience with a framework that allowed me to use React's SSR.
 
 <style type="text/css" rel="stylesheet">
 .theme-logo {
@@ -25,9 +29,9 @@ When I've been working on React, I've mostly spent it developing Single Page App
   <img class="theme-logo" src="/images/react-router-logo-light.svg" alt="React Router Logo" width="200" height="200">
 </picture>
 
-There's a myriad of server-side rendering (SSR) React frameworks out there nowadays, but the weapon of choice at the time was [Remix v2](https://remix.run/). Around the inception of the project, [React Router 7 (RR7) was released](https://remix.run/blog/react-router-v7). It's the spiritual successor to the Remix v2 framework, where it practically moved all of its framework-like features to React Router and was announced that any ongoing development for Remix v2 will be happening at RR7. Given how early the project was, we saw a chance to migrate.
+There's a myriad of server-side rendering (SSR) React frameworks out there nowadays, but the weapon of choice at the time was [Remix v2](https://remix.run/). Around the inception of the project, [React Router 7 (RR7) was released](https://remix.run/blog/react-router-v7). It's the spiritual successor to the Remix v2 framework, where it practically moved all of its framework-like features to RR7 and was announced that any ongoing development for Remix v2 will be happening at RR7. Given how early the project was, we saw a chance to migrate.
 
-Working on a "React framework" felt a bit awkward for me in the beginning as it required understanding the specific framework's conventions before being able to put stuff on the screen, whereas I only needed to know React when it was just a library, and then build from there. The concepts of SSR, hydration, progressive enhancement, data loading, error handling, and routing within RR7 were interesting and have shaped my opinions on designing and structuring code within a React codebase. I've made mistakes during the project, which helped me understand those concepts deeper. The following sections below are some of those lessons.
+Working on a framework felt a bit overwhelming for me in the beginning as it required understanding the specific framework's conventions before being able to put stuff on the screen, whereas I only needed to know React when it was just a library. The concepts within RR7 like progressive enhancement and hydration were new, interesting and confusing. However, after playing with it and learning, it has definitely expanded my toolset in expressing solutions in a React codebase. I've made mistakes during the project, which helped me understand those concepts deeper. The following sections below are some of those lessons.
 
 ## Grasping Hydration
 
@@ -56,7 +60,7 @@ The server sends **three separate things** to the browser:
 2. **The JavaScript bundle**: Your component code as unresolved, executable functions
 3. **Serialized loader data**: The data from your loader embedded in a `<script>` tag
 
-Here's what I didn't realize: **your component function runs twice.** Once on the server to generate that HTML, and then again on the client during hydration. And I don't mean React is just reading the HTML; it's executing your entire component function again from scratch to build its virtual DOM tree.
+I didn't realize that **your component function runs twice.** Once on the server to generate that HTML, and then again on the client during hydration. It's executing your entire component function again from scratch to build its virtual DOM tree.
 
 Let's say you have this route:
 
@@ -142,7 +146,7 @@ Here's the timeline of what happens:
    Expected: <p>Client time: 2025-10-26T10:00:00.456Z</p>
    Actual:   <p>Client time: 2025-10-26T10:00:00.123Z</p>
 
-❌ MISMATCH!
+MISMATCH!
 ```
 
 I thought the component was processed to a final HTML on the server and sent to the client to be processed further. In reality, the component runs again on the client!
@@ -266,7 +270,7 @@ async function checkFeatureFlag(flagName: string) {
 }
 ```
 
-This is a nice start. However, if the feature flag spans across routes, having to setup this `AsyncStorage` boilerplate can be tedious and cognitively noisy so we first tried turning this into a middleware. We were using express behind the framework so naively attached the async storage context in the express middleware like so:
+This is a nice start. However, if the feature flag spans across routes, having to setup this `AsyncStorage` boilerplate can be tedious and cognitively noisy so we first tried turning this into a middleware. We were using Express behind the framework so naively attached the async storage context in the Express middleware like so:
 
 ```tsx
 // server.ts
@@ -288,7 +292,7 @@ app.use(async (req, res, next) => {
 // ... React Router handler
 ```
 
-This doesn't work for some reason, took a lot of debugging and sanity checking to verify this. If I had to guess, it's probably because the call chain between Express and RR7 isn't connected. Luckily, RR7 introduced the concept of [middlewares](https://reactrouter.com/how-to/middleware) in their framework to do the same thing:
+This doesn't work for some reason. It took a lot of debugging and sanity checking to verify this. If I had to guess, it's probably because the execution context between Express and RR7 is different. Luckily, RR7 introduced the concept of [middlewares](https://reactrouter.com/how-to/middleware) in their framework to do something similar:
 
 ```tsx
 // app/context.ts
