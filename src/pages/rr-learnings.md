@@ -208,13 +208,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 }
 
-export function ErrorBoundary() {
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const routeLoaderData = useRouteLoaderData<typeof loader>("root");
 
-  // Try to get locale from the error response
   const locale = isRouteErrorResponse(error)
     ? error.data?.locale
-    : null;
+    : routeLoaderData?.locale;
 
   // getTranslations() should contain the mapping from the given locale
   // to a locale-specific translations object, which will be bundled by
