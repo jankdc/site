@@ -3,6 +3,7 @@ title: Thoughts in making bote
 layout: post
 date: 2026-06-17
 description: Trials and tribulations in getting an OSS project done in the age of AI
+live: true
 ---
 
 I finally finished the MVP for [bote](https://github.com/jankdc/bote). What turned out to be a silly idea to test out agentic coding turned into a 6 month endeavour in making something I'm proud of. Mind you, it wasn't a straight path to get here. There were basically 3 other projects that went nowhere to get to this point. I can say that I've learnt from them now but if I didn't come out of that tunnel vision of a hole then I would've felt very differently.
@@ -19,4 +20,4 @@ I was supposed to write about what mistakes and lessons I've learnt in detail he
 
 Going forwards, I think being surrounded by incredible people or tools is an opportunity to get help in doing something I envisioned but I think in striving for self-improvement and developing tastes, I should also do the thing along with it or at least develop a mental model of what's going on, to apply a better management of quality. Anyway, I spent half a year dedicated to this and used a lot of my savings, I should probably get a job...
 
-*looks at job market*...**sigh***
+*looks at job market*...**sigh**
